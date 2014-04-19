@@ -1,4 +1,5 @@
-COGS121 Facebook Twitter API Application
+COGS121 Facebook Twitter API Application 
+Part 2 - Adding D3JS
 ===========
 
 1.  Run npm install.

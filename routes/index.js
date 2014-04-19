@@ -36,36 +36,16 @@ exports.fbpage = function(req, res) {
     });
 }
 
-// exports.fbpagecanvas = function(req, res) {
-//     //test api call facebook
-//     app.graph.get("/me?fields=feed", function(err, reply) {
-//       var tempArray = [];
-//       var storyArray = reply.feed.data;
-//       // console.log(storyArray[0].story);
-//       // console.log(JSON.stringify(res,  null, '\t')); // get my information as json
-//       // tempdata = JSON.stringify(res,  null, '\t');
-//       storyArray.map(function(item){
-//         var tempJSON = {}
-//         tempJSON.story = item.story;
-//         console.log(tempJSON.story);
-//         tempArray.push(tempJSON);
-//       });
-
-//       var data = {stories : tempArray};
-//       res.render('fbpagecanvas', data, {layout: false});
-//     });
-// }
-
-
 exports.twitpage = function(req, res) {
 
-	var finalData = null,
-		screen_name = null,
-		posts = null;
+	var finalData,
+		screen_name,
+		posts;
 
 	//  get username of current user
     app.T.get('account/verify_credentials', function(err, reply) {
     	screen_name = reply.screen_name;
+        // screen_name = "test";
     	complete();
     });
 
@@ -105,10 +85,27 @@ exports.twitpage = function(req, res) {
 
     // check to make sure that async calls are made before final render
     function complete() {
-    	if(screen_name !== null && posts !== null) {
+    	if(screen_name !== undefined && posts !== undefined) {
     		finalData = {'posts': posts, 'screen_name': screen_name};
     		res.render('twitpage', finalData);
     	}
     }
+}
+
+exports.twitterd3 = function(req, res) {
+    //  get user twitter feed test
+    var dataArr = [];
+    app.T.get('statuses/user_timeline', { count: 100 }, function(err, reply) {
+
+        reply.map(function(item){
+            var tmpJSON = {};
+            tmpJSON.text = item.text;
+            tmpJSON.time = item.created_at;
+            dataArr.push(tmpJSON);
+        });
+        res.json(dataArr);
+    });
+
+
 }
 

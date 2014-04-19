@@ -16,3 +16,28 @@
 	border-radius: 2px;
 }
 
+.chart div {
+  font: 10px sans-serif;
+  text-align: right;
+  padding: 3px;
+  margin: 1px;
+  color: white;
+}
+
+.chart {
+  margin: 5px;
+}
+ 
+.chart rect {
+  fill: #2C4762;
+}
+ 
+.chart text {
+  fill: white;
+    font: 12px sans-serif;
+}
+ 
+.chart text.name {
+  fill: white;
+}
+ 

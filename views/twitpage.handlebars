@@ -2,10 +2,14 @@
     body {  background-color: #2EB8E6;}
 </style>
         <div class="container-twitter container-fluid">
-            <div id="heading" class = "h2 text-center">{{screen_name}}'s Tweet Graph</div> 
+            <div id="heading" class = "h2 text-center">{{screen_name}}'s Tweets Per Day</div> 
+            <p class = "text-center">
+                Below is a d3js visualization of the number of tweets you have posted per day, sorted
+                by date, up to the last 100 days.
+            </p>
             <div class = "row">
                 <div class = "col-md-12">
-                    <div class = "bargraph text-center"></div>
+                    <div class = "chart text-center"></div>
                 </div>
             </div>
             <div id="heading" class = "h2 text-center">{{screen_name}}'s Recent Tweets</div>

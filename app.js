@@ -126,6 +126,7 @@ app.get('/twitintro', index.twitintro);
 app.get('/fbpage', ensureAuthenticated, index.fbpage);
 // app.get('/fbpagecanvas', index.fbpagecanvas);
 app.get('/twitpage', ensureAuthenticated, index.twitpage);
+app.get('/twitterd3', ensureAuthenticated, index.twitterd3);
 
 // GET /auth/facebook
 //   Use passport.authenticate() as route middleware to authenticate the
