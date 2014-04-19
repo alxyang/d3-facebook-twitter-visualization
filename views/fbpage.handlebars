@@ -1,0 +1,18 @@
+<style type="text/css">
+    body {  background-color: #3B5998;}
+</style>
+        <div class="container-fb container-fluid">
+            <div id="heading" class = "color-fb h2 text-center">Recent Posts</div>
+            {{#each stories}}
+            <div class ="row">
+                <div class="col-md-offset-3 col-md-6 fbframe">
+                    {{story}}
+                </div>
+            </div>
+            {{/each}}
+ </div>
+
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="js/main.js"></script>

@@ -1,0 +1,21 @@
+.container-fb {
+  padding-top:50px;
+  padding-bottom:50px;
+}
+
+.fbframe {
+  background: #fff;
+  color: #000;
+  text-align: left;
+  margin-top:10px;
+  margin-bottom:10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 2px;
+}
+
+.color-fb{
+  color: white;
+}
