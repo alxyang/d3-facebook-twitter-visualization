@@ -21,14 +21,14 @@ var index = require('./routes/index');
 //twitter api keys
 var CONSUMER_KEY = process.env.twitter_consumer_key;
 var CONSUMER_SECRET = process.env.twitter_consumer_secret;
-var CALLBACK_URL_TWITTER = process.env.produrltwitter
+var CALLBACK_URL_TWITTER = process.env.devurltwitter
 var ACCESS_TOKEN = "";
 var ACCESS_TOKEN_SECRET = "";
 
 //facebook api keys
 var FACEBOOK_APP_ID = process.env.facebook_client_id;
 var FACEBOOK_APP_SECRET = process.env.facebook_client_secret;
-var CALLBACK_URL_FACEBOOK = process.env.produrlfacebook;
+var CALLBACK_URL_FACEBOOK = process.env.devurlfacebook;
 var FB_ACCESS_TOKEN = "";
 
 // Passport session setup.
@@ -113,7 +113,7 @@ app.use(express.logger());
 app.use(express.cookieParser());
 app.use(express.bodyParser());
 app.use(express.methodOverride());
-app.use(express.session({ secret: 'keyboard cat' }));
+app.use(express.session({ secret: 'keyboard dog' }));
 // Initialize Passport!  Also use passport.session() middleware, to support
 // persistent login sessions (recommended).
 app.use(passport.initialize());
@@ -151,7 +151,7 @@ app.get('/auth/facebook/callback',
   function(req, res) {
         graph.setAccessToken(FB_ACCESS_TOKEN);
         // code is set
-    // we'll send that and get the access token
+        // we'll send that and get the access token
         exports.graph = graph;
         res.redirect('/fbpage');
 
