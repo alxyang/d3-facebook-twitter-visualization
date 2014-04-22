@@ -26,6 +26,7 @@ $.get( "/facebookd3", function( data ) {
   //create svg
   var svg = d3.select('#graph')
       .append('svg')
+      .attr('class', '.gwidth')
       .attr('height', gheight);
 
   // zoom functionality
