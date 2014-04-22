@@ -1,0 +1,17 @@
+#graph{
+ border: 1px solid black; 
+ background: white;
+}
+
+#pause{
+margin-top: 8px;
+margin-right: 1px;
+}
+
+.fb-user {
+  margin-top: 15px;
+}
+
+svg{
+  width:100%;
+}

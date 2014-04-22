@@ -1,0 +1,22 @@
+<style type="text/css">
+    body {  background-color: #3B5998;}
+</style>
+    <div class="container color-fb">
+        <h1 class ="text-center">Friend Network Graph</h1>
+            <p>Below is a D3Js visualization of your Facebook friend network. <br>
+             Hover over a node to see the name of a friend, or hit pause to pause generation of the graph. <br> Please be patient, as the visualization may take a few minutes to load.</p>
+        <div class = "row">
+            <div class = "col-md-12">
+                <div id = "graph" class = "text-center">
+                </div>
+            </div>
+        </div>
+        <button type="button" class="btn btn-warning pull-right" id ="pause">Pause</button>
+        <div class = "fb-user ">Name: <span id ="who">N/A</span></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="js/main.js"></script>
+    <script src="js/d3graph.js"></script>

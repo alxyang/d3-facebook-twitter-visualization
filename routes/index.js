@@ -13,6 +13,9 @@ exports.fbintro = function(req, res) {
     res.render('twitintro');
  }
 
+exports.d3graph = function(req, res) {
+    res.render('d3graph');
+ }
 
 exports.fbpage = function(req, res) {
     //test api call facebook
@@ -26,9 +29,9 @@ exports.fbpage = function(req, res) {
         var tempJSON = {}
         tempJSON.story = item.story;
         if(tempJSON.story !== undefined){
-        console.log(tempJSON.story);
-        tempArray.push(tempJSON);
-    }
+            console.log(tempJSON.story);
+            tempArray.push(tempJSON);
+        }
       });
 
       var data = {stories : tempArray};
@@ -107,5 +110,39 @@ exports.twitterd3 = function(req, res) {
     });
 
 
+}
+
+exports.facebookd3 = function(req, res) {
+    var graph = {};
+    //test api call facebook
+    app.graph.get("/me/friends", function(err, reply) {
+        var friends = reply.data.reduce(function(acc, x){
+            acc[x.id] = x.name;
+            return acc;
+        }, {});
+
+        var fids = Object.keys(friends);
+
+        graph.nodes = fids.map(function(fid){
+            return{
+                id: fid,
+                name: friends[fid]
+            }
+        });
+        // console.log(graph);
+        // res.json(graph.nodes);
+        var query = "SELECT uid1, uid2 FROM friend WHERE uid1 IN (SELECT uid2 FROM friend WHERE uid1=me()) AND uid2 IN (SELECT uid2 FROM friend WHERE uid1=me())";
+
+        app.graph.fql(query, function(err, reply) {
+          console.log(res); // { data: [ { name: 'Ricky Bobby' } ] }
+          graph.edges = reply.data.map(function(rel){
+            return {
+                source: fids.indexOf(rel.uid1),
+                target: fids.indexOf(rel.uid2)
+            };
+          });
+          res.json(graph);
+        });
+    });
 }
 

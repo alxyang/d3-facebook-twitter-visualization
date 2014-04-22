@@ -127,7 +127,8 @@ app.get('/fbpage', ensureAuthenticated, index.fbpage);
 // app.get('/fbpagecanvas', index.fbpagecanvas);
 app.get('/twitpage', ensureAuthenticated, index.twitpage);
 app.get('/twitterd3', ensureAuthenticated, index.twitterd3);
-
+app.get('/facebookd3', ensureAuthenticated, index.facebookd3);
+app.get('/d3graph', ensureAuthenticated, index.d3graph);
 // GET /auth/facebook
 //   Use passport.authenticate() as route middleware to authenticate the
 //   request.  The first step in Facebook authentication will involve

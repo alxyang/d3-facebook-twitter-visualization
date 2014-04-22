@@ -19,3 +19,12 @@
 .color-fb{
   color: white;
 }
+
+.vis-text{
+  color: white;
+}
+
+.fblink{
+  text-decoration: underline;
+  color: white;
+}
