@@ -28,7 +28,7 @@ var ACCESS_TOKEN_SECRET = "";
 //facebook api keys
 var FACEBOOK_APP_ID = process.env.facebook_client_id;
 var FACEBOOK_APP_SECRET = process.env.facebook_client_secret;
-var CALLBACK_URL_FACEBOOK = process.env.devurlfacebook;
+var CALLBACK_URL_FACEBOOK = process.env.produrlfacebook;
 var FB_ACCESS_TOKEN = "";
 
 // Passport session setup.
