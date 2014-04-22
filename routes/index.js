@@ -129,12 +129,9 @@ exports.facebookd3 = function(req, res) {
                 name: friends[fid]
             }
         });
-        // console.log(graph);
-        // res.json(graph.nodes);
         var query = "SELECT uid1, uid2 FROM friend WHERE uid1 IN (SELECT uid2 FROM friend WHERE uid1=me()) AND uid2 IN (SELECT uid2 FROM friend WHERE uid1=me())";
 
         app.graph.fql(query, function(err, reply) {
-          console.log(res); // { data: [ { name: 'Ricky Bobby' } ] }
           graph.edges = reply.data.map(function(rel){
             return {
                 source: fids.indexOf(rel.uid1),
