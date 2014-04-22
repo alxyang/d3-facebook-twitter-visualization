@@ -1,3 +1,12 @@
+var $loading = $('#loading-div').hide();
+$(document)
+  .ajaxStart(function () {
+    $loading.show();
+  })
+  .ajaxStop(function () {
+    $loading.hide();
+  });
+
 
 var lerp = function(a, b, t) {
     return a + (b - a) * t;
