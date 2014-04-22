@@ -27,11 +27,12 @@ exports.fbpage = function(req, res) {
       // tempdata = JSON.stringify(res,  null, '\t');
       storyArray.map(function(item){
         var tempJSON = {}
-        tempJSON.story = item.story;
-        if(tempJSON.story !== undefined){
-            console.log(tempJSON.story);
-            tempArray.push(tempJSON);
+        if(item.story !== undefined){
+            tempJSON.story = item.story;
         }
+        tempJSON.message = item.message;
+        tempArray.push(tempJSON);
+
       });
 
       var data = {stories : tempArray};
