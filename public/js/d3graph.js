@@ -135,7 +135,3 @@ $.get( "/facebookd3", function( data ) {
 .fail(function() {
     alert( "error retrieving data" );
 });
-
-
-
-
