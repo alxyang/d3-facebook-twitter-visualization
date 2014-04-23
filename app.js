@@ -21,14 +21,14 @@ var index = require('./routes/index');
 //twitter api keys
 var CONSUMER_KEY = process.env.twitter_consumer_key;
 var CONSUMER_SECRET = process.env.twitter_consumer_secret;
-var CALLBACK_URL_TWITTER = process.env.devurltwitter
+var CALLBACK_URL_TWITTER = process.env.produrltwitter
 var ACCESS_TOKEN = "";
 var ACCESS_TOKEN_SECRET = "";
 
 //facebook api keys
 var FACEBOOK_APP_ID = process.env.facebook_client_id;
 var FACEBOOK_APP_SECRET = process.env.facebook_client_secret;
-var CALLBACK_URL_FACEBOOK = process.env.devurlfacebook;
+var CALLBACK_URL_FACEBOOK = process.env.produrlfacebook;
 var FB_ACCESS_TOKEN = "";
 
 // Passport session setup.

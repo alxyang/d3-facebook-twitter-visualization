@@ -19,24 +19,17 @@ $.get( "/facebookd3", function( data ) {
   graph.edges = data.edges;
 }) 
 .done(function() {
-  //set graph width and height
-  var gwidth = 800;
-  var gheight = 400;
 
   //create svg
   var svg = d3.select('#graph')
       .append('svg')
-      .attr('class', '.gwidth')
-      .attr('height', gheight);
+      .attr('class', '.gdimensions');
 
   // zoom functionality
   var g = svg.append('g');
   svg.call(d3.behavior.zoom().on('zoom', function() {
-      g.attr('transform',
-          'translate(' + d3.event.translate + ')'
-          + ' scale(' + d3.event.scale + ')');
+      g.attr('transform', 'translate(' + d3.event.translate + ')' + ' scale(' + d3.event.scale + ')');
   }));
-  
 
   var friendships = graph.edges.reduce(function(acc, x) {
       if (!Object.prototype.hasOwnProperty.call(acc, x.source)) {
@@ -69,7 +62,7 @@ $.get( "/facebookd3", function( data ) {
   var force = d3.layout.force()
       .charge(-120)
       .linkDistance(40)
-      .size([gwidth, gheight])
+      .size([800, 400])
       .nodes(graph.nodes)
       .links(graph.edges);
 
