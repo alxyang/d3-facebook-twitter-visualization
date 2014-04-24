@@ -97,7 +97,7 @@ $.get( "/facebookd3", function( data ) {
       .style('cursor', 'pointer')
       .on('mouseover', function(d, i) {
           d3.select(this)
-              .attr('r', sizeForNode(i) + 7)
+              .attr('r', sizeForNode(i))
               .style('fill', 'blue');
           var name = d3.select(this).data()[0].name;
           d3.select('#who').text(name);
