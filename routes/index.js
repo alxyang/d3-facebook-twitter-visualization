@@ -114,24 +114,31 @@ exports.twitterd3 = function(req, res) {
 }
 
 exports.facebookd3 = function(req, res) {
+    //empty graph object which will be passed as json
     var graph = {};
-    //test api call facebook
+    //query to get all friends
     app.graph.get("/me/friends", function(err, reply) {
         var friends = reply.data.reduce(function(acc, x){
             acc[x.id] = x.name;
             return acc;
         }, {});
 
+        //grab all the ids
         var fids = Object.keys(friends);
 
+        //set up the nodes in graph object, with several nested fid + name objects
         graph.nodes = fids.map(function(fid){
             return{
                 id: fid,
                 name: friends[fid]
             }
         });
+
+
+        //fql query 
         var query = "SELECT uid1, uid2 FROM friend WHERE uid1 IN (SELECT uid2 FROM friend WHERE uid1=me()) AND uid2 IN (SELECT uid2 FROM friend WHERE uid1=me())";
 
+        //grab all the source and targets for the edges
         app.graph.fql(query, function(err, reply) {
           graph.edges = reply.data.map(function(rel){
             return {
@@ -139,6 +146,7 @@ exports.facebookd3 = function(req, res) {
                 target: fids.indexOf(rel.uid2)
             };
           });
+          //when all data is grabbed pass graph object as json to front end js
           res.json(graph);
         });
     });
