@@ -1,5 +1,5 @@
 {
-  "name": "Facebook-Twitter-Node-App",
+  "name": "D3JS-Node-App",
   "version": "0.0.1",
   "author": "Alex Yang",
   "scripts": {
@@ -16,7 +16,8 @@
     "passport-twitter": "*",
     "dotenv": "*",
     "fbgraph": "*",
-    "twit": "*"
+    "twit": "*",
+    "nodemon": "*"
   },
   "engines": {
     "node": "0.10.x"
