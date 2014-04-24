@@ -1,6 +1,7 @@
-COGS121 Facebook Twitter API Application 
-Part 2 - A D3JS Visualization of Your Facebook Friend Network
+A D3JS Visualization of Your Facebook Friend Network
 ===========
+Developed as a course project for  COGS121, displays data pulled from the Facebook and Twitter API
+Back-end built in NodeJS, data visualization in D3JS.
 
 Instructions
 =====================
