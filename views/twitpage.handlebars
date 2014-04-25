@@ -1,31 +1,33 @@
 <style type="text/css">
     body {  background-color: #2EB8E6;}
 </style>
-        <div class="container-twitter container-fluid">
-            <div id="heading" class = "h2 text-center">{{screen_name}}'s Tweets Per Day</div> 
-            <p class = "text-center">
-                Below is a d3js visualization of the number of tweets you have posted per day, sorted
-                by date, up to the last 100 days.
-            </p>
-            <div class = "row">
-                <div class = "col-md-12">
-                    <div class = "chart text-center">
-                    </div>
+    <div class="container-twitter container-fluid">
+        <div id="heading" class = "h2 text-center">{{screen_name}}'s Tweets Per Day</div> 
+        <p class = "text-center">
+            Below is a d3js visualization of the number of tweets you have posted per day, sorted
+            by date, up to the last 100 days.<br><br>
+            <button id="sort">Sort</button>
+            <button id="reset">Reset</button>
+        </p>
+        <div class = "row">
+            <div class = "col-md-12">
+                <div class = "chart text-center">
                 </div>
             </div>
-            <div id="heading" class = "h2 text-center">{{screen_name}}'s Recent Tweets</div>
-            {{#each posts}} 
-            <div class ="row">
-                <div class="col-md-offset-3 col-md-6 tweetframe">
-                    {{text}}
-                    <span class = "small">{{time}}</span>
-                </div>
-            </div>
-            {{/each}}
         </div>
+        <div id="heading" class = "h2 text-center">{{screen_name}}'s Recent Tweets</div>
+        {{#each posts}} 
+        <div class ="row">
+            <div class="col-md-offset-3 col-md-6 tweetframe">
+                {{text}}
+                <span class = "small">{{time}}</span>
+            </div>
+        </div>
+        {{/each}}
+    </div>
 
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
-    <script src="js/main.js"></script>
-    <script src="js/twitpage.js"></script>
+<script src="https://code.jquery.com/jquery.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="js/main.js"></script>
+<script src="js/twitpage.js"></script>
