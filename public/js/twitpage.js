@@ -20,12 +20,35 @@ $.get( "/twitterd3", function( data ) {
 
   var dataset = [];
   var dates = [];
+  var obj = {};
 
   for(var key in counters){
       dataset.push(counters[key]);
       dates.push(key);
+      obj[key] = counters[key];
   }
+
+  var sorteddataset = [];
+
+  for(var date in obj) {
+    sorteddataset.push([date, obj[date]]);
+  }
+  sorteddataset.sort(function(a, b) {return a[1] - b[1]})
+
+  var sortedvalues = [];
+  var sorteddates = [];
+
+  var x;
+  for(x = 0; x < sorteddataset.length; x++) {
+    sortedvalues.push(sorteddataset[x][1]);
+    sorteddates.push(sorteddataset[x][0]);
+  }
+
+  console.log(sortedvalues);
+  console.log(sorteddates);
+
 jQuery(function($) {
+
   var chart;
   var width = 500;
   var bar_height = 20;
@@ -40,7 +63,6 @@ jQuery(function($) {
   var yRangeBand = bar_height + gap;
   y = function(i) { return yRangeBand * i; };
 
-  /* step 4 */
   var left_width = 100;
  
   chart = d3.select(".chart")
@@ -77,11 +99,108 @@ jQuery(function($) {
     .attr("text-anchor", "middle")
     .attr('class', 'name')
     .text(String);
+
+d3.select("#sort").on("click", sortBars);
+d3.select("#reset").on("click", reset);
+
+function sortBars() {
+
+  chart.selectAll("rect")
+    .data([])
+    .exit()
+    .remove();
+
+  chart.selectAll("text.score")
+    .data([])
+    .exit()
+    .remove();
+
+  chart.selectAll("text.name")
+    .data([])
+    .exit()
+    .remove();
+
+  chart.selectAll("rect")
+    .data(sortedvalues)
+    .enter().append("rect")
+    .attr("x", left_width)
+    .attr("y", function(d, i) { return y(i);})
+    .attr("width", x)
+    .attr("height", bar_height);
  
+  chart.selectAll("text.score")
+    .data(sortedvalues)
+    .enter().append("text")
+    .attr("x", function(d) { return x(d) + left_width; })
+    .attr("y", function(d, i) { return y(i) + bar_height / 2;})
+    .attr("dx", -5)
+    .attr("dy", ".36em")
+    .attr("text-anchor", "end")
+    .attr('class', 'score')
+    .text(String);
+ 
+  chart.selectAll("text.name")
+    .data(sorteddates)
+    .enter().append("text")
+    .attr("x", left_width / 2)
+    .attr("y", function(d, i){ return y(i) +bar_height/2; } )
+    .attr("dy", ".36em")
+    .attr("text-anchor", "middle")
+    .attr('class', 'name')
+    .text(String);
+};
+
+function reset() {
+
+  chart.selectAll("rect")
+    .data([])
+    .exit()
+    .remove();
+
+  chart.selectAll("text.score")
+    .data([])
+    .exit()
+    .remove();
+
+  chart.selectAll("text.name")
+    .data([])
+    .exit()
+    .remove();
+
+  chart.selectAll("rect")
+    .data(dataset)
+    .enter().append("rect")
+    .attr("x", left_width)
+    .attr("y", function(d, i) { return y(i);})
+    .attr("width", x)
+    .attr("height", bar_height);
+ 
+  chart.selectAll("text.score")
+    .data(dataset)
+    .enter().append("text")
+    .attr("x", function(d) { return x(d) + left_width; })
+    .attr("y", function(d, i) { return y(i) + bar_height / 2;})
+    .attr("dx", -5)
+    .attr("dy", ".36em")
+    .attr("text-anchor", "end")
+    .attr('class', 'score')
+    .text(String);
+ 
+  chart.selectAll("text.name")
+    .data(dates)
+    .enter().append("text")
+    .attr("x", left_width / 2)
+    .attr("y", function(d, i){ return y(i) +bar_height/2; } )
+    .attr("dy", ".36em")
+    .attr("text-anchor", "middle")
+    .attr('class', 'name')
+    .text(String);
+};
  
 }(jQuery));
 
 })
+
 .fail(function() {
     alert( "error retrieving data" );
 });
