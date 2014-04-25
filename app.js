@@ -25,7 +25,7 @@ var CALLBACK_URL_TWITTER = process.env.produrltwitter
 var ACCESS_TOKEN = "";
 var ACCESS_TOKEN_SECRET = "";
 
-//facebook api keys
+//facebook api keys, change to dev for run on localhost, change to prod for deployment
 var FACEBOOK_APP_ID = process.env.facebook_client_id;
 var FACEBOOK_APP_SECRET = process.env.facebook_client_secret;
 var CALLBACK_URL_FACEBOOK = process.env.produrlfacebook;
