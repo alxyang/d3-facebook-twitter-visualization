@@ -7,11 +7,6 @@ $(document)
     $loading.hide();
   });
 
-
-var lerp = function(a, b, t) {
-    return a + (b - a) * t;
-};
-
 var graph = {};
 //pass in facebook api data from back end
 $.get( "/facebookd3", function( data ) {
@@ -19,17 +14,6 @@ $.get( "/facebookd3", function( data ) {
   graph.edges = data.edges;
 }) 
 .done(function() {
-
-  //create svg
-  var svg = d3.select('#graph')
-      .append('svg')
-      .attr('class', '.gdimensions');
-
-  // zoom functionality
-  var g = svg.append('g');
-  svg.call(d3.behavior.zoom().on('zoom', function() {
-      g.attr('transform', 'translate(' + d3.event.translate + ')' + ' scale(' + d3.event.scale + ')');
-  }));
 
   var friendships = graph.edges.reduce(function(acc, x) {
       if (!Object.prototype.hasOwnProperty.call(acc, x.source)) {
@@ -48,6 +32,10 @@ $.get( "/facebookd3", function( data ) {
       return acc;
   }, {});
 
+  var lerp = function(a, b, t) {
+    return a + (b - a) * t;
+  };
+
   // Compute the maximum links from a node.
   var maxFriends = Math.max.apply(Math, Object.keys(friendships).map(function(k) {
       return friendships[k].length;
@@ -57,6 +45,17 @@ $.get( "/facebookd3", function( data ) {
   var sizeForNode = function(i) {
       return Math.round(lerp(2, 10, (friendships[i] || [-1]).length / maxFriends));
   };
+
+  //create svg
+  var svg = d3.select('#graph')
+      .append('svg')
+      .attr('class', '.gdimensions');
+
+  // zoom functionality
+  var g = svg.append('g');
+  svg.call(d3.behavior.zoom().on('zoom', function() {
+      g.attr('transform', 'translate(' + d3.event.translate + ')' + ' scale(' + d3.event.scale + ')');
+  }));
 
   // Create a force layout to display nodes.
   var force = d3.layout.force()
@@ -82,7 +81,7 @@ $.get( "/facebookd3", function( data ) {
       .data(graph.edges)
       .enter().append('line')
       .attr('class', 'edge')
-      .style('stroke', 'rgba(200, 200, 200, 0.2)')
+      .style('stroke', '#9BC4E2')
       .style('stroke-width', 0.5);
 
   // Add the nodes to the SVG.
@@ -94,19 +93,19 @@ $.get( "/facebookd3", function( data ) {
           return sizeForNode(i);
       })
       .style('stroke', 'rgba(100, 100, 100, 0.2)')
-      .style('fill', '#aaa')
+      .style('fill', '#3B5998')
       .style('cursor', 'pointer')
       .on('mouseover', function(d, i) {
           d3.select(this)
-              .attr('r', sizeForNode(i) + 7)
-              .style('fill', '#3B5998');
+              .attr('r', sizeForNode(i))
+              .style('fill', 'blue');
           var name = d3.select(this).data()[0].name;
           d3.select('#who').text(name);
       })
       .on('mouseout', function(d, i) {
           d3.select(this)
               .attr('r', sizeForNode(i))
-              .style('fill', '#aaa');
+              .style('fill', '#3B5998');
           d3.select('#who').text('N/A');
       })
       .call(force.drag);
